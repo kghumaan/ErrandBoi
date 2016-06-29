@@ -1,0 +1,74 @@
+<?php
+// define variables and set to empty values
+$fnameErr = $pnumberErr = $taskErr = $urgencyErr = $agreeErr = "";
+$fname = $lname = $pnumber = $task = $urgency = $agree = "";
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
+   if (empty($_GET["fname"])) {
+     $fnameErr = "This is required";
+   } else {
+     $fname = test_input($_POST["fname"]);
+   }
+
+   if (empty($_GET["lname"])) {
+     $lname = "";
+   } else {
+     $lname = test_input($_GET["lname"]);
+   }
+   if (empty($_GET["pnumber"])) {
+     $pnumberErr = "You phone # is required";
+   } else {
+     $pnumber = test_input($_GET["pnumber"]);
+   }
+      if (empty($_GET["task"])) {
+     $taskErr = "How can we help??";
+   } else {
+     $task = test_input($_GET["task"]);
+   }
+      if (empty($_GET["urgency"])) {
+     $urgencyErr = "How urgent is it??";
+   } else {
+     $urgency = test_input($_GET["urgency"]);
+   }
+      if (empty($_GET["agree"])) {
+     $agreeErr = "This is required.";
+   } else {
+     $agree = test_input($_GET["agree"]);
+   }
+  }
+
+  function test_input($data) {
+   $data = trim($data);
+   $data = stripslashes($data);
+   $data = htmlspecialchars($data);
+   return $data;
+}
+function validateForm() {
+    var x = document.forms["errand"]["pnumber"].value;
+    if (x == null || x == "") {
+        alert("Phone Number is required (So we can contact you)");
+        return false;
+    }
+}
+function validateForm() {
+    var x = document.forms["errand"]["task"].value;
+    if (x == null || x == "") {
+        alert("Let us know how we can help!");
+        return false;
+    }
+}
+function validateForm() {
+    var x = document.forms["errand"]["urgency"].value;
+    if (x == null || x == "") {
+        alert("How fast do you need it done?");
+        return false;
+    }
+}
+function validateForm() {
+    var x = document.forms["errand"]["agree"].value;
+    if (x == null || x == "") {
+        alert("Please AGREE to our TERMS AND CONDITIONS");
+        return false;
+    }
+}
+?>
+

@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <link rel="stylesheet" href="style.css" type="text/css" media="screen" />
+  <link href="errandboi.css" rel="stylesheet" type="css/text">
+  <link rel="Icon" href="EBCheckout">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="http://guidobouman.github.io/jquery-panelsnap/jquery.panelSnap.js"></script>
+<style>
+.error {color: red;} 
+body {
+    text-align: center;
+    background-image: url("ZenBG.png");
+    background-repeat:  repeat;
+    background-color: black;
+    margin: 0;
+    padding: 0;
+    border: none;
+    text-align: center;
+    font: normal 13px Verdana, sans-serif;
+    color: #222;
+}
+</style>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Errandboi, Errand, Urgent, Task">
+<meta name="author" content="Karanvir (K.V.) Ghumaan">
+<meta name="description" content="A student-run service that assists customers by fullfilling their tasks/errands.">
+<meta name="robots" CONTENT="all">
+<!-- JAVASCRIPT tags go here-->
+
+
+<title>Errandboi</title>
+</head>
+
+<body> 
+
+<script>
+function validateForm() {
+    
+    var errormessage = "";
+
+    if (document.getElementById('fname').value == "") {
+        errormessage += "Enter your first name. \n";
+        document.getElementById('fname').style.borderColor = "red";
+      }
+    if (document.getElementById('pnumber').value == "") {
+        errormessage += "Phone # is required. \n";
+        document.getElementById('pnumber').style.borderColor = "red";
+      }
+    if (document.getElementById('task').value == "") {
+        errormessage += "How can we help?? \n";
+        document.getElementById('task').style.borderColor = "red";
+      }
+    if (document.getElementById('agree').checked == false){
+        errormessage += "Please AGREE to our Terms and Conditions. \n";
+    }
+
+    if (document.getElementById('urgency1').checked == true){
+      return true;
+      }else if (document.getElementById('urgency2').checked == true){
+        return true;
+      }else{
+          errormessage += "Please SELECT your urgency. \n";
+      }
+    if (errormessage != "") {
+        alert(errormessage);
+        return false;
+    }
+}
+</script>
+<div id="content">
+  <h1 class="title" id="div2">&nbsp;&nbsp;Errandboi!&nbsp;&nbsp;&nbsp;</h1>
+	<div class="mission" id="div"><h2>Do you have an emergency that you need taken care of? Are you in a hurry and just need a helping hand? Look no further: <u>Errandboi is here to save the day!</u><br></h2><h3> Our diligent and hard-working "squad" is here to gurantee that your duty at hand is completed while you can continue to live life to the fullest. Errandboi has a plethora of payment options to fit your budget and the urgency of your task.</h3></div>
+
+<div class="mission2" id="div"><h3><center>Once you decide to use our service, ask yourself this initial question:</center> <div class= "red"><center><h2>Is it urgent?</h2></center></div></h3>
+    <h4><center>Urgency of a certain duty plays a huge role in letting us know how important it is to you. By selecting the approprate option, we can respond accordingly and better fit your budget. Proceeding from this initial question, you can chose to select a vareity of options.</center></h4></div>
+       
+      <table class="table" cellpadding="8"><tr><th><span class="regular">REGULAR</span></th>
+        <th><span class="vip">VIP</span></th></tr>
+        <tr><td><span class="regular">$5</span></td>
+            <td><span class="vip">$15<span></td></tr>
+        <tr><td><span class="regular">Up to an hour</span></td>
+            <td><span class="vip">Up to 30 minutes</span></td></tr>
+
+      <table class="table2" cellpadding="4">
+        
+        <tr></tr>
+      </table>
+
+  
+<div class="mission3" id="div"><h4><center>Being college students ourselves, we can understand that money can be scarce. Therefore, we advice chosing our "Regular" payment option (unless it is REALLY urgent) and our team will act upon it as soon as possible! Please fill out the Errand Form down below, and we hope that you have a wonderful day!</center></h4></div>
+</div>
+    <!-- this is the start of the errand form-->
+
+<div class="errand" id="div">
+  <form name="errand" onsubmit="return validateForm()" method="get" enctype="text/plain" action="thanks.php">
+	 <fieldset>
+    <legend>Request an Errand:</legend>
+  <span class="error">* required field.</span><hr>
+  <span class="error">* </span>First name: 
+      <input type="text" id="fname" name="fname" size="44"><hr>
+  Last name: 
+      <input type="text" id="lname" name="lname" size="46"><hr>
+  <span class="error">* </span>Phone number: 
+      <input type="text" id="pnumber" name="pnumber" size="40"><hr>
+  <div id="task2">
+  <span class="error">* </span>Errand or Task:
+  </div>
+  <textarea type="text" id="task" name="task" rows="3" cols="57"></textarea><hr>
+<div id="urgency">
+  <span class="error">* </span>Urgency:<br><br>
+      <input type="radio" id="urgency1" name="urgency" value="regular"><span class="regular">Regular</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <input type="radio" id="urgency2" name="urgency" value="vip"><span class="vip">VIP</span><br><br><hr>
+  <span class="error">* </span>
+      <input type="checkbox" id="agree" name="agree" value="agree">I agree to the <a href="termsofservice.pdf">TERMS AND CONDITIONS</a><hr>
+  <input type="submit" value="Send Help!" id="customButton" name="submit" class="submit" onClick="submit()"></button></div>
+  </fieldset>
+</form></div>
+</div>
+
+<!-- content -->
+
+<script src="https://checkout.stripe.com/checkout.js"></script>
+<script>
+  var handler = StripeCheckout.configure({
+    key: 'pk_live_K92IZczDCnkpumITas9JWT3D',
+    image: 'carltonDancing.gif',
+    locale: 'auto',
+    token: function(token) {
+      // Use the token to create the charge with a server-side script.
+      // You can access the token ID with `token.id`
+    }
+  });
+
+  $('#customButton').on('click', function(e) {
+    // Open Checkout with further options
+    handler.open({
+      name: 'ErrandBoi!',
+      description: 'Bet, We Got Your Back',
+      amount: 1500
+    });
+    e.preventDefault();
+  });
+
+  // Close Checkout on page navigation
+  $(window).on('popstate', function() {
+    handler.close();
+  });
+</script>
+
+<!-- CONTACT INFORMATION GOES HERE-->
+
+<h5 class="contact"><center><a href="tel: 00-317-730-2557">Send a SMS</a>Contact Information:
+	Visit my LinkedIN Profile: <a href="https://www.linkedin.com/in/kv-ghumaan-132863a3">HERE</a></center></h5>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="nagging-menu.js" charset="utf-8"></script>
+</body>
+</html>
